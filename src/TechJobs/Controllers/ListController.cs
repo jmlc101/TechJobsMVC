@@ -34,6 +34,23 @@ namespace TechJobs.Controllers
                 List<Dictionary<string, string>> jobs = JobData.FindAll();
                 ViewBag.title =  "All Jobs";
                 ViewBag.jobs = jobs;
+
+                List<string> skeys = new List<string>();
+                List<string> svalues = new List<string>();
+                foreach (Dictionary<string, string> job in ViewBag.jobs)
+                {
+                    foreach (string key in job.Keys)
+                    {
+                        skeys.Add(key);
+                    }
+                    ViewBag.skeys = skeys;
+                    foreach (string value in job.Values)
+                    {
+                        svalues.Add(value);
+                    }
+                    ViewBag.svalues = svalues;
+                }
+
                 return View("Jobs");
             }
             else
